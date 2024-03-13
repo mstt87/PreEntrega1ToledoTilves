@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Préstamos Personales</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-left">
+                <img src="/img/nexo.jpeg" alt="Logo de NexoFinanciera" class="navbar-logo">
+                <span class="navbar-name">Nexo Financiera</span>
+            </div>
+            <div class="navbar-right">
+                <ul>
+                    <li><a href="#">Acerca de Nosotros</a></li>
+                    <li><a href="#">Préstamos</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+
+    <div class="titulo">
+        <h1>Simulador de Préstamos Personales</h1>
+    </div>
+
+    <div class="container">
+        <div class="form-group">
+            <label for="monto">Monto del préstamo:</label>
+            <input type="number" id="monto" placeholder="Ingrese el monto">
+        </div>
+
+        <div class="form-group">
+            <label for="plazo">Plazo en meses:</label>
+            <input type="number" id="plazo" placeholder="Ingrese el plazo">
+        </div>
+
+        <div class="form-group">
+            <label for="tasa">Tasa de interés anual (%):</label>
+            <input type="number" id="tasa" placeholder="6.00" value="6.00" readonly>
+        </div>
+
+        <button onclick="calcularPrestamo()">Calcular</button>
+
+        <div id="resultado"></div>
+    </div>
+
+    <footer class="footer">
+
+        <img src="/img/nexo.jpeg" alt="Logo de la financiera">
+
+
+        <p class="footer-text">Nexo Loans es el blog líder en préstamos. Opera como socio tecnológico, servicios TIC,
+            servicios de marketing web, marketing digital e identidad corporativa, no es responsable de productos,
+            servicios, sitios, recomendaciones, patrocinios y reseñas de terceros. Todos los productos, logotipos y
+            nombres de empresas son marcas comerciales ™ o registradas® de sus respectivos propietarios. Su uso no
+            significa ni sugiere el respaldo, la afiliación o el patrocinio de o por parte de Nexo Loans o de ellos. El
+            propietario de este sitio web puede recibir una compensación a cambio de la ubicación destacada de ciertos
+            productos y servicios patrocinados o al hacer clic en los enlaces publicados en este sitio web. Esta
+            compensación puede afectar cómo y dónde aparecen los productos en este sitio web (incluido, por ejemplo, el
+            orden en que aparecen). Nexo Loans se esfuerza por brindar una amplia gama de ofertas para los usuarios,
+            para garantizar que la información en este sitio esté actualizada y sea precisa, pero debe confirmar
+            cualquier información con el proveedor del producto o servicio y leer la información que pueden
+            proporcionar.</p>
+        <div class="footer-links">
+            <a href="#">Contactos</a> |
+            <a href="#">Política de privacidad</a> |
+            <a href="#">Política de Cookie</a>
+        </div>
+        <p>&copy; 2024 NexoFinanciera</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
