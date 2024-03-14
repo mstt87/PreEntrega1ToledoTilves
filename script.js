@@ -65,7 +65,7 @@ function enviarDatos() {
     }
 
     // Validar el formato del número de teléfono
-    const telefonoRegex = /^\d{9}$/; // Por ejemplo, 10 dígitos sin espacios ni guiones
+    const telefonoRegex = /^\d{9}$/; // Por ejemplo, 9 dígitos sin espacios ni guiones
     if (!telefonoRegex.test(telefono)) {
         alert('Por favor, ingrese un número de teléfono válido.');
         return;
