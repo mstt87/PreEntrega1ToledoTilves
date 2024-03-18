@@ -1,13 +1,18 @@
 function calcularPrestamo() {
+    const campos = ['monto', 'plazo', 'tasa'];
+    
+    // Verificar que todos los campos del formulario estén completos
+    for (let campo of campos) {
+        const valor = parseFloat(document.getElementById(campo).value);
+        if (isNaN(valor)) {
+            alert('Por favor, complete todos los campos correctamente.'); // Se muestra una alerta si algún campo no es un número válido
+            return;
+        }
+    }
+
     const monto = parseFloat(document.getElementById('monto').value);
     const plazo = parseInt(document.getElementById('plazo').value);
     const tasaAnual = parseFloat(document.getElementById('tasa').value);
-
-    // Verificar si algún campo está vacío o no es un número
-    if (isNaN(monto) || isNaN(plazo) || isNaN(tasaAnual)) {
-        alert('Por favor, complete todos los campos correctamente.');
-        return;
-    }
 
     // Verificar que el monto esté dentro del rango permitido
     if (monto < 500 || monto > 300000) {
@@ -51,7 +56,7 @@ function enviarDatos() {
     const email = document.getElementById('email').value;
     const telefono = document.getElementById('telefono').value;
 
-    // Verificar si algún campo del formulario está vacío
+    // Verificar que todos los campos del formulario estén completos
     if (nombre === '' || email === '' || telefono === '') {
         alert('Por favor, complete todos los campos del formulario.');
         return;
