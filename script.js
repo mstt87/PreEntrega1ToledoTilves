@@ -1,27 +1,34 @@
+const prestamos = [
+    { tipo: 'Personal', tasa: 10 },
+    { tipo: 'Hipotecario', tasa: 6 },
+    { tipo: 'Automotriz', tasa: 8 }
+];
+
 function calcularPrestamo() {
-    const campos = ['monto', 'plazo', 'tasa'];
-    
+    const campos = ['monto', 'plazo', 'tipo-prestamo'];
+
     // Verificar que todos los campos del formulario estén completos
     for (let campo of campos) {
-        const valor = parseFloat(document.getElementById(campo).value);
-        if (isNaN(valor)) {
-            alert('Por favor, complete todos los campos correctamente.'); // Se muestra una alerta si algún campo no es un número válido
+        const valor = document.getElementById(campo).value.trim();
+        if (valor === '') {
+            alert('Por favor, complete todos los campos correctamente.'); // Se muestra una alerta si algún campo está vacío
             return;
         }
     }
 
     const monto = parseFloat(document.getElementById('monto').value);
     const plazo = parseInt(document.getElementById('plazo').value);
-    const tasaAnual = parseFloat(document.getElementById('tasa').value);
+    const tipoPrestamo = document.getElementById('tipo-prestamo').value;
 
-    // Verificar que el monto esté dentro del rango permitido
-    if (monto < 500 || monto > 300000) {
-        alert('El monto del préstamo debe estar entre $500 y $300,000.');
+    const tasa = obtenerTasa(tipoPrestamo);
+
+    if (!tasa) {
+        alert('Tipo de préstamo no válido.');
         return;
     }
 
     // Calcular la cuota mensual y el total a pagar
-    const tasaMensual = tasaAnual / 12 / 100;
+    const tasaMensual = tasa / 12 / 100;
     const cuotaMensual = (monto * tasaMensual) / (1 - Math.pow(1 + tasaMensual, -plazo));
     const totalAPagar = cuotaMensual * plazo;
 
@@ -30,7 +37,8 @@ function calcularPrestamo() {
     resultadoElement.innerHTML = `
         <p>Monto del préstamo: $${monto.toFixed(2)}</p>
         <p>Plazo en meses: ${plazo}</p>
-        <p>Tasa de interés anual: ${tasaAnual}%</p>
+        <p>Tipo de préstamo: ${tipoPrestamo}</p>
+        <p>Tasa de interés anual: ${tasa}%</p>
         <p>Cuota mensual: $${cuotaMensual.toFixed(2)}</p>
         <p>Total a pagar: $${totalAPagar.toFixed(2)}</p>
         <p>¡Gracias por usar nuestro simulador! La información del préstamo ha sido calculada con éxito.</p>
@@ -51,10 +59,15 @@ function calcularPrestamo() {
     `;
 }
 
+function obtenerTasa(tipoPrestamo) {
+    const prestamo = prestamos.find(prestamo => prestamo.tipo === tipoPrestamo);
+    return prestamo ? prestamo.tasa : null;
+}
+
 function enviarDatos() {
-    const nombre = document.getElementById('nombre').value;
-    const email = document.getElementById('email').value;
-    const telefono = document.getElementById('telefono').value;
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const telefono = document.getElementById('telefono').value.trim();
 
     // Verificar que todos los campos del formulario estén completos
     if (nombre === '' || email === '' || telefono === '') {
