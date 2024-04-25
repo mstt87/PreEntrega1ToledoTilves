@@ -19,7 +19,7 @@ body {
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Alineación vertical al centro */
+    align-items: center; 
 }
 
 .navbar-left {
@@ -70,6 +70,7 @@ body {
 
     max-width: 800px;
     margin: 0 auto;
+    margin-bottom: 20px;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -157,4 +158,68 @@ button:hover {
 
 .footer-links a:hover {
     text-decoration: underline;
+}
+
+.formu1 {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+/* Estilos para el mensaje de alerta */
+#mensaje {
+    display: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#mensaje.oculto {
+    display: none;
+}
+
+#mensaje.error {
+    background-color: #f44336;
+    color: white;
+}
+
+#mensaje.exito {
+    background-color: #4caf50;
+    color: white;
+}
+
+/* Estilos para el modal */
+#modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#modal.visible {
+    display: block;
+}
+
+#toggle-form-button {
+    max-width: 200px;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    color: #fff;
+    background-color: #4ec612;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    
 }
