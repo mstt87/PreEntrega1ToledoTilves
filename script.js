@@ -6,7 +6,12 @@ const prestamos = prestamosJSON ? JSON.parse(prestamosJSON) : [
 ];
 
 function guardarPrestamosEnLocalStorage() {
-    localStorage.setItem('prestamos', JSON.stringify(prestamos));
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            localStorage.setItem('prestamos', JSON.stringify(prestamos));
+            resolve();
+        }, 1000); // Simular un retraso de 1 segundo
+    });
 }
 
 function mostrarMensaje(mensaje, tipo) {
@@ -27,7 +32,7 @@ function limpiarFormulario() {
     document.getElementById('formulario').reset();
 }
 
-function calcularPrestamo() {
+async function calcularPrestamo() {
     const monto = parseFloat(document.getElementById('monto').value);
     const plazo = parseInt(document.getElementById('plazo').value);
     const tipoPrestamo = document.getElementById('tipo-prestamo').value;
@@ -63,8 +68,8 @@ function calcularPrestamo() {
     // Limpiar el formulario después de calcular el préstamo
     limpiarFormulario();
 
-    // Guardar préstamos en el LocalStorage
-    guardarPrestamosEnLocalStorage();
+    // Guardar préstamos en el LocalStorage de manera asíncrona
+    await guardarPrestamosEnLocalStorage();
 
     ocultarMensaje();
 }
@@ -103,7 +108,13 @@ function enviarDatos() {
     }, 3000);
 
     // Limpiar el formulario después de enviar los datos
-    limpiarFormulario();
+    const formulario = document.getElementById('formulario');
+    for (const campo of formulario.querySelectorAll('input, textarea')) {
+        campo.value = '';
+    }
+
+    // Después de enviar los datos, llama a la función para mostrar el mensaje de éxito
+    mostrarMensajeExito();
 }
 
 function cargarDatosUsuario() {
@@ -126,8 +137,6 @@ document.querySelectorAll('input').forEach(input => {
     input.addEventListener('input', ocultarMensaje);
 });
 
-
-
 // Agregar evento de submit al formulario
 document.getElementById('formulario').addEventListener('submit', function(event) {
     // Evitar que el formulario se envíe de manera predeterminada
@@ -140,5 +149,11 @@ document.getElementById('formulario').addEventListener('submit', function(event)
     limpiarFormulario();
 });
 
-
-
+// Llama a SweetAlert2 para mostrar un mensaje de éxito
+function mostrarMensajeExito() {
+    Swal.fire({
+        icon: 'success',
+        title: '¡Gracias por dejar tus datos!',
+        text: 'Un representante se pondrá en contacto contigo pronto.'
+    });
+}

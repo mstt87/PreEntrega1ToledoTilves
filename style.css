@@ -223,3 +223,50 @@ button:hover {
     padding: 10px 20px;
     
 }
+
+.botonllamada{
+    display: block;
+    width: 250px;
+    margin: 20px auto; 
+    padding: 15px 20px;
+    background-color: #007bff; 
+    color: #fff; 
+    font-size: 16px; 
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; 
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.prestamo {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.prestamo h2 {
+    color: #007bff;
+}
+
+.botonllamada2 {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.botonllamada2:hover {
+    background-color: #337436;
+}
+
+
