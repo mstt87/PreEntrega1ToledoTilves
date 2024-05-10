@@ -157,3 +157,33 @@ function mostrarMensajeExito() {
         text: 'Un representante se pondrá en contacto contigo pronto.'
     });
 }
+
+
+async function obtenerDatosRemotos(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos remotos');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error:', error.message);
+        return null;
+    }
+}
+
+// Ejemplo de uso:
+async function cargarDatosDesdeServidor() {
+    const url = 'https://ejemplo.com/api/prestamos';
+    const datosRemotos = await obtenerDatosRemotos(url);
+    if (datosRemotos) {
+        console.log('Datos remotos obtenidos:', datosRemotos);
+        // Aquí se podria hacer algo con los datos remotos, como actualizar la lista de préstamos
+    } else {
+        console.log('No se pudieron obtener los datos remotos.');
+    }
+}
+
+// Llamar a la función para cargar datos desde el servidor
+cargarDatosDesdeServidor();
