@@ -130,8 +130,11 @@ function cargarDatosUsuario() {
 cargarDatosUsuario();
 
 // Capturar eventos del usuario sobre los inputs y botones
-document.getElementById('calcular-btn').addEventListener('click', calcularPrestamo);
-document.getElementById('enviar-btn').addEventListener('click', enviarDatos);
+const btncalcular = document.getElementById('calcular-btn');
+btncalcular.addEventListener('click', calcularPrestamo);
+
+const btnEnviar = document.getElementById('enviar-btn');
+btnEnviar.addEventListener('click', enviarDatos);
 
 document.querySelectorAll('input').forEach(input => {
     input.addEventListener('input', ocultarMensaje);
@@ -173,17 +176,25 @@ async function obtenerDatosRemotos(url) {
     }
 }
 
-// Ejemplo de uso:
 async function cargarDatosDesdeServidor() {
     const url = 'https://ejemplo.com/api/prestamos';
     const datosRemotos = await obtenerDatosRemotos(url);
     if (datosRemotos) {
-        console.log('Datos remotos obtenidos:', datosRemotos);
-        // Aquí se podria hacer algo con los datos remotos, como actualizar la lista de préstamos
+        Swal.fire({
+            icon: 'success',
+            title: 'Datos remotos obtenidos:',
+            text: JSON.stringify(datosRemotos)
+        });
+        // Aquí se podría hacer algo con los datos remotos, como actualizar la lista de préstamos
     } else {
-        console.log('No se pudieron obtener los datos remotos.');
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se pudieron obtener los datos remotos.'
+        });
     }
 }
+
 
 // Llamar a la función para cargar datos desde el servidor
 cargarDatosDesdeServidor();
