@@ -161,31 +161,30 @@ function mostrarMensajeExito() {
     });
 }
 
-
 async function obtenerDatosRemotos(url) {
     try {
         const response = await fetch(url);
         if (!response.ok) {
-            throw new Error('Error al obtener los datos remotos');
+            throw new Error('Network response was not ok');
         }
         const data = await response.json();
         return data;
     } catch (error) {
-        console.error('Error:', error.message);
+        console.error('Error fetching data:', error);
         return null;
     }
 }
 
 async function cargarDatosDesdeServidor() {
-    const url = 'https://ejemplo.com/api/prestamos';
+    const url = 'https://jsonplaceholder.typicode.com/posts';
     const datosRemotos = await obtenerDatosRemotos(url);
     if (datosRemotos) {
+        console.log(datosRemotos); // Para verificar los datos en la consola si es necesario
         Swal.fire({
             icon: 'success',
             title: 'Datos remotos obtenidos:',
-            text: JSON.stringify(datosRemotos)
+            text: 'Los datos se han cargado correctamente.'
         });
-        // Aquí se podría hacer algo con los datos remotos, como actualizar la lista de préstamos
     } else {
         Swal.fire({
             icon: 'error',
@@ -194,6 +193,8 @@ async function cargarDatosDesdeServidor() {
         });
     }
 }
+
+window.onload = cargarDatosDesdeServidor;
 
 
 // Llamar a la función para cargar datos desde el servidor
