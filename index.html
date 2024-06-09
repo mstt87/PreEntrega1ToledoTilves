@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Préstamos Personales</title>
+    <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-
-
+    <title>Simulador de Préstamos Personales</title>
+</head>
+<body>
     <div>
         <header>
-
             <nav class="navbar">
                 <div class="navbar-left">
                     <img src="./img/nexo.jpeg" alt="Logo de NexoFinanciera" class="navbar-logo">
@@ -26,39 +25,28 @@
             </nav>
             <h1>¡Bienvenido a nuestra empresa de préstamos!</h1>
             <p>Obtén el dinero que necesitas de forma rápida y segura.</p>
-            <p>Tan fácil como respirar, así de sencillo es pedir un crédito con nosotros
-
-                Tenemos la solución a tus problemas financieros con un solo clic</p>
+            <p>Tan fácil como respirar, así de sencillo es pedir un crédito con nosotros</p>
+            <p>Tenemos la solución a tus problemas financieros con un solo clic</p>
             <div>
-                <p>Cobertura eficaz para que nada te detenga.
-
-                    Cobertura eficaz en casos de morosidad y ASNEF.
-
-                    Aportamos Soluciones. <br>Elige tu crédito con garantías.
-
-                    Los intereses más bajos del mercado.</p>
-
+                <p>Cobertura eficaz para que nada te detenga.</p>
+                <p>Cobertura eficaz en casos de morosidad y ASNEF.</p>
+                <p>Aportamos Soluciones. <br>Elige tu crédito con garantías.</p>
+                <p>Los intereses más bajos del mercado.</p>
                 <button class="botonllamada">¿Tienes dudas? - Llamanos</button>
-
-
             </div>
         </header>
-
         <div class="titulo">
             <h1>Simulador de Préstamos Personales</h1>
         </div>
-
         <div class="container">
             <div class="form-group">
                 <label for="monto">Monto del préstamo:</label>
                 <input type="number" id="monto" placeholder="Ingrese el monto">
             </div>
-
             <div class="form-group">
                 <label for="plazo">Plazo en meses:</label>
                 <input type="number" id="plazo" placeholder="Ingrese el plazo">
             </div>
-
             <div class="form-group">
                 <label for="tipo-prestamo">Tipo de préstamo:</label>
                 <select id="tipo-prestamo">
@@ -67,14 +55,11 @@
                     <option value="Automotriz">Automotriz</option>
                 </select>
             </div>
-
             <button id="calcular-btn">Calcular</button>
-
             <div id="resultado"></div>
         </div>
         <div class="formu1">
             <div id="toggle-form-button">Formulario de Contacto</div>
-
             <div id="formulario" class="oculto">
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
@@ -88,11 +73,9 @@
                     <label for="telefono">Teléfono:</label>
                     <input type="tel" id="telefono" placeholder="Ingrese su teléfono">
                 </div>
-                <button onclick="enviarDatos()">Enviar</button>
+                <button id="enviar-btn">Enviar</button>
             </div>
-
             <div id="modal" class="modal"></div>
-
         </div>
     </div>
     <footer class="footer">
@@ -107,9 +90,8 @@
         </div>
         <p>&copy; 2024 NexoFinanciera</p>
     </footer>
-
-    <script src="script.js"></script>
+    <div id="mensaje" class="oculto"></div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    </body>
-
+    <script src="script.js"></script>
+</body>
 </html>

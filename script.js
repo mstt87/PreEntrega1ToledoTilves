@@ -44,6 +44,11 @@ async function calcularPrestamo() {
         return;
     }
 
+    if (isNaN(monto) || isNaN(plazo) || monto <= 0 || plazo <= 0) {
+        mostrarMensaje('Por favor, ingrese valores válidos para el monto y el plazo.', 'error');
+        return;
+    }
+
     // Calcular la cuota mensual y el total a pagar
     const tasaMensual = tasa / 12 / 100;
     const cuotaMensual = (monto * tasaMensual) / (1 - Math.pow(1 + tasaMensual, -plazo));
@@ -127,29 +132,27 @@ function cargarDatosUsuario() {
     }
 }
 
-cargarDatosUsuario();
+document.addEventListener('DOMContentLoaded', () => {
+    cargarDatosUsuario();
 
-// Capturar eventos del usuario sobre los inputs y botones
-const btncalcular = document.getElementById('calcular-btn');
-btncalcular.addEventListener('click', calcularPrestamo);
+    const btnCalcular = document.getElementById('calcular-btn');
+    const btnEnviar = document.getElementById('enviar-btn');
 
-const btnEnviar = document.getElementById('enviar-btn');
-btnEnviar.addEventListener('click', enviarDatos);
+    if (btnCalcular) {
+        btnCalcular.addEventListener('click', calcularPrestamo);
+    } else {
+        console.error('Elemento con ID "calcular-btn" no encontrado.');
+    }
 
-document.querySelectorAll('input').forEach(input => {
-    input.addEventListener('input', ocultarMensaje);
-});
+    if (btnEnviar) {
+        btnEnviar.addEventListener('click', enviarDatos);
+    } else {
+        console.error('Elemento con ID "enviar-btn" no encontrado.');
+    }
 
-// Agregar evento de submit al formulario
-document.getElementById('formulario').addEventListener('submit', function(event) {
-    // Evitar que el formulario se envíe de manera predeterminada
-    event.preventDefault();
-
-    // Enviar los datos
-    enviarDatos();
-
-    // Limpiar el formulario
-    limpiarFormulario();
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', ocultarMensaje);
+    });
 });
 
 // Llama a SweetAlert2 para mostrar un mensaje de éxito
@@ -195,7 +198,6 @@ async function cargarDatosDesdeServidor() {
 }
 
 window.onload = cargarDatosDesdeServidor;
-
 
 // Llamar a la función para cargar datos desde el servidor
 cargarDatosDesdeServidor();
