@@ -163,41 +163,33 @@ function mostrarMensajeExito() {
         text: 'Un representante se pondrá en contacto contigo pronto.'
     });
 }
-
-async function obtenerDatosRemotos(url) {
+async function obtenerTasasDeCambio() {
+    const url = 'https://open.er-api.com/v6/latest/USD';
     try {
         const response = await fetch(url);
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error('No se pudo obtener las tasas de cambio');
         }
         const data = await response.json();
         return data;
     } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error al obtener las tasas de cambio:', error);
         return null;
     }
 }
 
-async function cargarDatosDesdeServidor() {
-    const url = 'https://jsonplaceholder.typicode.com/posts';
-    const datosRemotos = await obtenerDatosRemotos(url);
-    if (datosRemotos) {
-        console.log(datosRemotos); // Para verificar los datos en la consola si es necesario
-        Swal.fire({
-            icon: 'success',
-            title: 'Datos remotos obtenidos:',
-            text: 'Los datos se han cargado correctamente.'
-        });
+async function mostrarValoresDeDivisas() {
+    const tasas = await obtenerTasasDeCambio();
+    if (tasas) {
+        const valorEuro = tasas.rates.EUR;
+        const valorDolar = 1; // Dólar es la moneda base
+        document.getElementById('valor-euro').textContent = `Valor actual del Euro: ${valorEuro}`;
+        document.getElementById('valor-dolar').textContent = `Valor actual del Dólar: ${valorDolar}`;
     } else {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'No se pudieron obtener los datos remotos.'
-        });
+        console.error('No se pudieron obtener las tasas de cambio.');
     }
 }
 
-window.onload = cargarDatosDesdeServidor;
+// Llamar a la función para mostrar los valores de las divisas
+mostrarValoresDeDivisas();
 
-// Llamar a la función para cargar datos desde el servidor
-cargarDatosDesdeServidor();
